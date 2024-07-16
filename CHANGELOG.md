@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.2.0...v1.2.1) (2024-07-16)
+
+
+### Bug Fixes
+
+* change branche release ([ea42a06](https://github.com/robertoAraneda/next-app-github-action-test/commit/ea42a0652b137d8ac0661f0b743865d1d537312d))
+
 # [1.2.0](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.1.1...v1.2.0) (2024-07-16)
 
 
