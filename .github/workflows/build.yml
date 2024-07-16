@@ -14,6 +14,20 @@
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+        
+        - name: Run Trivy vulnerability scanner in repo mode
+          uses: aquasecurity/trivy-action@0.24.0
+          with:
+            scan-type: 'fs'
+            ignore-unfixed: true
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+            severity: 'CRITICAL'
+        
+        - name: Upload Trivy scan results to GitHub Security tab
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: 'trivy-results.sarif'
 
         - name: Get commit hash
           id: get-commit-hash
@@ -29,6 +43,18 @@
             IMAGE_TAG: ${{ steps.get-commit-hash.outputs.commit-hash }}-${{ steps.get-timestamp.outputs.timestamp }}
           run: |
             docker build -t nextapp:$IMAGE_TAG .
+
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@0.24.0
+          env:
+            IMAGE_TAG: ${{ steps.get-commit-hash.outputs.commit-hash }}-${{ steps.get-timestamp.outputs.timestamp }}
+          with:
+            image-ref: 'nextapp:$IMAGE_TAG'
+            format: 'table'
+            exit-code: '1'
+            ignore-unfixed: true
+            vuln-type: 'os,library'
+            severity: 'CRITICAL,HIGH'
 
 
         - uses: actions/github-script@v7
