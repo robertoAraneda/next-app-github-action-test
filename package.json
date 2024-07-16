@@ -38,7 +38,7 @@
   },
   "release": {
     "branches": [
-      "main"
+      "master"
     ],
     "repositoryUrl": "https://github.com/robertoAraneda/next-app-github-action-test.git",
     "plugins": [
