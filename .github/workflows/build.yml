@@ -21,10 +21,8 @@
           uses: aquasecurity/trivy-action@0.24.0
           with:
             scan-type: 'fs'
-            ignore-unfixed: true
             format: 'sarif'
             output: 'trivy-results.sarif'
-            severity: 'CRITICAL'
         
         - name: Upload Trivy scan results to GitHub Security tab
           uses: github/codeql-action/upload-sarif@v3
@@ -56,10 +54,6 @@
             image-ref: nextapp:${{ env.IMAGE_TAG }}
             format: 'sarif'
             output: 'image-results.sarif'
-            exit-code: '1'
-            ignore-unfixed: true
-            vuln-type: 'os,library'
-            severity: 'CRITICAL,HIGH'
 
         - name: Upload Trivy scan results to GitHub Security tab Image
           uses: github/codeql-action/upload-sarif@v3
