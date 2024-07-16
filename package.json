@@ -67,15 +67,15 @@
           "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
         }
       ],
-      "@semantic-release/github",
-      {
-        "assets": [
-          {
-            "path": "CHANGELOG.md",
-            "label": "Changelog"
-          }
-        ]
-      }
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ]
     ]
   }
 }
