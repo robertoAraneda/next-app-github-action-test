@@ -52,6 +52,12 @@
             "changelogFile": "CHANGELOG.md"
         }
      ],
+     [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+      ],
       [
         "@semantic-release/git",
         {
@@ -61,7 +67,15 @@
           "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
         }
       ],
-      "@semantic-release/github"
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "CHANGELOG.md",
+            "label": "Changelog"
+          }
+        ]
+      }
     ]
   }
 }
