@@ -51,7 +51,7 @@
           env:
             IMAGE_TAG: ${{ steps.get-commit-hash.outputs.commit-hash }}-${{ steps.get-timestamp.outputs.timestamp }}
           with:
-            image-ref: 'nextapp:$IMAGE_TAG'
+            image-ref: nextapp:${{ env.IMAGE_TAG }}
             format: 'table'
             exit-code: '1'
             ignore-unfixed: true
