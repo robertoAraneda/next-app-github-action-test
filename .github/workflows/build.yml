@@ -1,0 +1,56 @@
+  name: Push the Docker image to AWS ECR Repo
+  on:
+    push:
+      branches:
+        - master
+        
+  jobs:
+    Build:
+      permissions:
+        pull-requests: write
+
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Get commit hash
+          id: get-commit-hash
+          run: echo "commit-hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+        - name: Get timestamp
+          id: get-timestamp
+          run:  echo "timestamp=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+
+        - name: Build, tag, and push the image to Amazon ECR
+          id: build-image
+          env:
+            IMAGE_TAG: ${{ steps.get-commit-hash.outputs.commit-hash }}-${{ steps.get-timestamp.outputs.timestamp }}
+          run: |
+            docker build -t nextapp:$IMAGE_TAG .
+
+
+        - uses: actions/github-script@v7
+          if: github.event_name == 'pull_request'
+          with:
+            script: |
+              const output = `
+
+              *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`
+
+              *Workflow: \`${{ github.workflow }}\`, Action: \`${{ github.event.action }}\`
+
+              *[View Run Details]( \`${{ github.event.pull_request.html_url }}/checks)\`
+              `;
+
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+
+
+
+          
