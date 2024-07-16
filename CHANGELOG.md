@@ -1,3 +1,10 @@
+## [1.2.2-develop.2](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.2.2-develop.1...v1.2.2-develop.2) (2024-07-16)
+
+
+### Bug Fixes
+
+* channel name release ([34a81e1](https://github.com/robertoAraneda/next-app-github-action-test/commit/34a81e16468149e6f1a4d50fef224a10a62968b8))
+
 ## [1.2.2-develop.1](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.2.1...v1.2.2-develop.1) (2024-07-16)
 
 
