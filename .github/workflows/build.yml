@@ -30,6 +30,23 @@
           with:
             sarif_file: 'trivy-results.sarif'
             category: 'repository-scanning'
+        
+        - name: Unit Test with Testmo
+          id: testmo
+          uses: actions/setup-node@v4
+          with:
+            node-version: '20'
+            cache: 'npm'
+          run: |
+            npm ci
+            npm install --no-save @testmo/testmo-cli
+            npx testmo automation:run:submit \
+            --instance "$TESTMO_URL" \
+            --project-id 9 \
+            --name "Jest unit test" \
+            --source "unit-tests" \
+            --results junit.xml \
+            -- npm run test:ci # Note space after --
 
         - name: Get commit hash
           id: get-commit-hash
