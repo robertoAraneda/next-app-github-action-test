@@ -28,8 +28,10 @@
         
         - name: Upload Trivy scan results to GitHub Security tab
           uses: github/codeql-action/upload-sarif@v3
+          if: always()
           with:
             sarif_file: 'trivy-results.sarif'
+            category: 'repository-scanning'
 
         - name: Get commit hash
           id: get-commit-hash
