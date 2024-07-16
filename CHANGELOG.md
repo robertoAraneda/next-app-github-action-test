@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.1.1...v1.2.0) (2024-07-16)
+
+
+### Bug Fixes
+
+* add p tag ([b5cf595](https://github.com/robertoAraneda/next-app-github-action-test/commit/b5cf59523fe6dbd810c5b4b6ec2d59ee2bca4b6d))
+* change branche release ([d2cfff0](https://github.com/robertoAraneda/next-app-github-action-test/commit/d2cfff0f830d13dd833624ccd4083816204a975e))
+
+
+### Features
+
+* add develop branch ([03da1bc](https://github.com/robertoAraneda/next-app-github-action-test/commit/03da1bc5af91b71ffd5483e1127a55ffaf141ed9))
+
 ## [1.1.1](https://github.com/robertoAraneda/next-app-github-action-test/compare/v1.1.0...v1.1.1) (2024-07-16)
 
 
