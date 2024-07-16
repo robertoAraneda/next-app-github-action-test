@@ -30,7 +30,7 @@
           with:
             sarif_file: 'trivy-results.sarif'
             category: 'repository-scanning'
-            
+
         - uses: actions/setup-node@v4
           with:
             node-version: 20
@@ -38,6 +38,9 @@
         
         - name: Unit Test with Testmo
           id: testmo
+          env:
+            TESTMO_URL: ${{ secrets.TESTMO_URL }}
+            TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
           run: |
             npm ci
             npm install --no-save @testmo/testmo-cli
