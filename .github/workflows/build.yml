@@ -52,6 +52,11 @@
             --results junit.xml \
             -- npm run test:ci # Note space after --
 
+        - name: Release
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: npx semantic-release
+
         - name: Get commit hash
           id: get-commit-hash
           run: echo "commit-hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
