@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "version": "0.1.0",
+  "version": "1.2.2-develop.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -41,23 +41,30 @@
   "release": {
     "branches": [
       "master",
-      { "name": "develop", "prerelease": true, "channel": "next" }
+      {
+        "name": "develop",
+        "prerelease": true,
+        "channel": "next"
+      }
     ],
     "repositoryUrl": "https://github.com/robertoAraneda/next-app-github-action-test.git",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      ["@semantic-release/npm", {
-        "npmPublish": false
-      }],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       [
         "@semantic-release/git",
         {
           "assets": [
             "CHANGELOG.md",
             "package.json"
-        ],
+          ],
           "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
         }
       ],
